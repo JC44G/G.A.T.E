@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G.A.T.E. - Sistema de Cierre Hermético Inteligente</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Asegurar que el menú se vea correctamente */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                background: var(--color-dark-light);
+                padding: 2rem;
+                gap: 1rem;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                z-index: 999;
+            }
+
+            .nav-menu.active {
+                transform: translateX(0);
+            }
+            
+            .menu-toggle {
+                display: flex !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegación -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1 class="logo">G.A.T.E.</h1>
+                <p class="tagline">Sistema Hermético Inteligente</p>
+            </div>
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#inicio" class="nav-link">Inicio</a></li>
+                <li><a href="#proyecto" class="nav-link">Proyecto</a></li>
+                <li><a href="#innovacion" class="nav-link">Innovación</a></li>
+                <li><a href="#beneficios" class="nav-link">Beneficios</a></li>
+                <li><a href="#equipo" class="nav-link">Equipo</a></li>
+                <li><a href="semanas.html" class="nav-link">Semanas</a></li>
+                <li><a href="#contacto" class="nav-link">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h2 class="hero-title animate-fade-in">Sistema de Cierre Hermético con IA</h2>
+            <p class="hero-subtitle animate-fade-in-delay">Innovación tecnológica para la seguridad industrial y preservación ambiental</p>
+            <div class="hero-buttons animate-fade-in-delay-2">
+                <a href="#proyecto" class="btn btn-primary">Conocer más</a>
+                <a href="semanas.html" class="btn btn-secondary">Ver Avances</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span></span>
+        </div>
+    </section>
+
+    <!-- Proyecto -->
+    <section id="proyecto" class="section">
+        <div class="container">
+            <h2 class="section-title">Sobre el Proyecto</h2>
+            <div class="project-grid">
+                <div class="project-card animate-on-scroll">
+                    <div class="card-icon">🎯</div>
+                    <h3>Objetivo</h3>
+                    <p>Proponer un sistema de cierre hermético innovador con IA que incremente la seguridad, preserve el medio ambiente y optimice los procesos industriales.</p>
+                </div>
+                <div class="project-card animate-on-scroll">
+                    <div class="card-icon">🔬</div>
+                    <h3>Metodología</h3>
+                    <p>Realización de 10 entrevistas a profesionales e ingenieros del sector industrial para recopilar percepciones y validar la viabilidad del proyecto.</p>
+                </div>
+                <div class="project-card animate-on-scroll">
+                    <div class="card-icon">💡</div>
+                    <h3>Solución</h3>
+                    <p>Sistema automatizado que combina sensores avanzados, IA y diseño ergonómico para controlar la salida de gases en entornos industriales.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Innovación -->
+    <section id="innovacion" class="section section-dark">
+        <div class="container">
+            <h2 class="section-title">Innovación Tecnológica</h2>
+            <div class="innovation-content">
+                <div class="innovation-list">
+                    <div class="innovation-item animate-on-scroll">
+                        <div class="innovation-icon">🤖</div>
+                        <div class="innovation-text">
+                            <h3>Inteligencia Artificial</h3>
+                            <p>Monitoreo y predicción de fugas en tiempo real</p>
+                        </div>
+                    </div>
+                    <div class="innovation-item animate-on-scroll">
+                        <div class="innovation-icon">📡</div>
+                        <div class="innovation-text">
+                            <h3>Sensores Avanzados</h3>
+                            <p>Detección precisa de movimiento y gases</p>
+                        </div>
+                    </div>
+                    <div class="innovation-item animate-on-scroll">
+                        <div class="innovation-icon">🔒</div>
+                        <div class="innovation-text">
+                            <h3>Cierre Hermético</h3>
+                            <p>Prevención de emisiones contaminantes</p>
+                        </div>
+                    </div>
+                    <div class="innovation-item animate-on-scroll">
+                        <div class="innovation-icon">⚡</div>
+                        <div class="innovation-text">
+                            <h3>Sistema de Respaldo</h3>
+                            <p>Operación continua con backup eléctrico</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Beneficios -->
+    <section id="beneficios" class="section">
+        <div class="container">
+            <h2 class="section-title">Beneficios Clave</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card animate-on-scroll">
+                    <div class="benefit-header">
+                        <span class="benefit-icon">🛡️</span>
+                        <h3>Seguridad</h3>
+                    </div>
+                    <ul>
+                        <li>Protección del personal contra gases peligrosos</li>
+                        <li>Alarmas y sensores de seguridad integrados</li>
+                        <li>Cumplimiento de normativas internacionales</li>
+                    </ul>
+                </div>
+                <div class="benefit-card animate-on-scroll">
+                    <div class="benefit-header">
+                        <span class="benefit-icon">🌱</span>
+                        <h3>Medio Ambiente</h3>
+                    </div>
+                    <ul>
+                        <li>Prevención de emisiones contaminantes</li>
+                        <li>Contribución a estándares ambientales</li>
+                        <li>Preservación del entorno industrial</li>
+                    </ul>
+                </div>
+                <div class="benefit-card animate-on-scroll">
+                    <div class="benefit-header">
+                        <span class="benefit-icon">📊</span>
+                        <h3>Eficiencia</h3>
+                    </div>
+                    <ul>
+                        <li>Reducción de errores humanos</li>
+                        <li>Aumento de la productividad</li>
+                        <li>Monitoreo en tiempo real</li>
+                    </ul>
+                </div>
+                <div class="benefit-card animate-on-scroll">
+                    <div class="benefit-header">
+                        <span class="benefit-icon">💰</span>
+                        <h3>Económico</h3>
+                    </div>
+                    <ul>
+                        <li>Relación costo-beneficio favorable</li>
+                        <li>Reducción de tiempos operativos</li>
+                        <li>Innovación accesible</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Equipo -->
+    <section id="equipo" class="section section-dark">
+        <div class="container">
+            <h2 class="section-title">Nuestro Equipo</h2>
+            <div class="team-grid">
+                <div class="team-member animate-on-scroll">
+                    <div class="member-avatar">JC</div>
+                    <h3>Juan Carlos Alvitez Campana</h3>
+                    <p>Investigador</p>
+                </div>
+                <div class="team-member animate-on-scroll">
+                    <div class="member-avatar">NM</div>
+                    <h3>Nayeli Milagros Choquepura Caceres</h3>
+                    <p>Investigadora</p>
+                </div>
+                <div class="team-member animate-on-scroll">
+                    <div class="member-avatar">GJ</div>
+                    <h3>Gisel Judith Leon Benique</h3>
+                    <p>Investigadora</p>
+                </div>
+                <div class="team-member animate-on-scroll">
+                    <div class="member-avatar">LD</div>
+                    <h3>Luis David Santuyo García</h3>
+                    <p>Investigador</p>
+                </div>
+                <div class="team-member animate-on-scroll">
+                    <div class="member-avatar">JC</div>
+                    <h3>Juan Carlos Zambrano Mendoza</h3>
+                    <p>Investigador</p>
+                </div>
+            </div>
+            <div class="advisor">
+                <p><strong>Profesor Asesor:</strong> Ares Leonardo Silva Varillas</p>
+                <p><strong>Institución:</strong> Instituto Superior Tecnológico Tecsup - Arequipa, Perú</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" class="section">
+        <div class="container">
+            <h2 class="section-title">Contáctanos</h2>
+            <div class="contact-content">
+                <div class="contact-info animate-on-scroll">
+                    <h3>Información de Contacto</h3>
+                    <div class="contact-item">
+                        <span class="contact-icon">🏫</span>
+                        <div>
+                            <strong>Instituto</strong>
+                            <p>Tecsup - Arequipa</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📧</span>
+                        <div>
+                            <strong>Email</strong>
+                            <p>gate.proyecto@tecsup.edu.pe</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <div>
+                            <strong>Ubicación</strong>
+                            <p>Arequipa, Perú</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form animate-on-scroll">
+                    <input type="text" placeholder="Nombre" required>
+                    <input type="email" placeholder="Email" required>
+                    <input type="text" placeholder="Asunto" required>
+                    <textarea rows="5" placeholder="Mensaje" required></textarea>
+                    <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 G.A.T.E. - Instituto Superior Tecnológico Tecsup. Todos los derechos reservados.</p>
+            <p>Proyecto de Investigación e Innovación Tecnológica</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

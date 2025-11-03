@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 5 - Planificación Inicial | G.A.T.E.</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .week-detail-container {
+            padding: 8rem 0 5rem;
+            min-height: 100vh;
+        }
+
+        .week-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem;
+            background: var(--color-dark-light);
+            border-radius: 20px;
+            border: 2px solid rgba(0, 255, 255, 0.1);
+        }
+
+        .week-header-number {
+            font-size: 5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .week-header-title {
+            color: var(--color-primary);
+            font-size: 2rem;
+            margin: 1rem 0;
+        }
+
+        .week-header-date {
+            color: var(--color-text-dim);
+            font-size: 1.1rem;
+        }
+
+        .content-section {
+            margin: 3rem 0;
+        }
+
+        .content-section h3 {
+            color: var(--color-primary);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(0, 255, 255, 0.2);
+        }
+
+        .content-text {
+            background: var(--color-dark-light);
+            padding: 2rem;
+            border-radius: 15px;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .content-text p {
+            margin-bottom: 1rem;
+        }
+
+        .content-text ul {
+            list-style: none;
+            padding-left: 1rem;
+        }
+
+        .content-text li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .content-text li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--color-primary);
+            font-size: 1.2rem;
+        }
+
+        /* Gallery Section */
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .photo-card {
+            background: var(--color-dark-light);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid rgba(0, 255, 255, 0.1);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--color-primary);
+            box-shadow: 0 15px 40px rgba(0, 255, 255, 0.3);
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--color-dark-medium) 0%, var(--color-dark-light) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .photo-placeholder::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .photo-caption {
+            padding: 1.5rem;
+        }
+
+        .photo-caption h4 {
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .photo-caption p {
+            color: var(--color-text-dim);
+            font-size: 0.9rem;
+        }
+
+        /* Achievements Section */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .achievement-item {
+            background: var(--color-dark-light);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--color-primary);
+            transition: var(--transition);
+        }
+
+        .achievement-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(0, 255, 255, 0.2);
+        }
+
+        .achievement-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .achievement-title {
+            color: var(--color-primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Navigation buttons */
+        .week-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 4rem;
+            gap: 1rem;
+        }
+
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: var(--color-dark-light);
+            border: 2px solid var(--color-primary);
+            border-radius: 10px;
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .nav-btn:hover {
+            background: var(--color-primary);
+            color: var(--color-dark);
+            transform: translateX(5px);
+        }
+
+        .nav-btn.prev:hover {
+            transform: translateX(-5px);
+        }
+
+        .nav-btn.disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        /* Modal for full image view */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            font-size: 3rem;
+            color: var(--color-primary);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            transform: rotate(90deg);
+            color: var(--color-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .week-header-number {
+                font-size: 3rem;
+            }
+
+            .week-header-title {
+                font-size: 1.5rem;
+            }
+
+            .photo-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .week-navigation {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegación -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1 class="logo">G.A.T.E.</h1>
+                <p class="tagline">Sistema Hermético Inteligente</p>
+            </div>
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html#inicio" class="nav-link">Inicio</a></li>
+                <li><a href="index.html#proyecto" class="nav-link">Proyecto</a></li>
+                <li><a href="index.html#innovacion" class="nav-link">Innovación</a></li>
+                <li><a href="index.html#beneficios" class="nav-link">Beneficios</a></li>
+                <li><a href="semanas.html" class="nav-link">Avances</a></li>
+                <li><a href="index.html#equipo" class="nav-link">Equipo</a></li>
+                <li><a href="index.html#contacto" class="nav-link">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <section class="week-detail-container">
+        <div class="container">
+            <a href="semanas.html" class="back-button">
+                <span>←</span> Volver a Semanas
+            </a>
+
+            <!-- Header -->
+            <div class="week-header animate-fade-in">
+                <div class="week-header-number">SEMANA 05</div>
+                <h1 class="week-header-title">Planificación Inicial</h1>
+                <p class="week-header-date">Enero 2025</p>
+                <span class="week-status status-completed">Completado</span>
+            </div>
+
+            <!-- Descripción General -->
+            <div class="content-section animate-on-scroll">
+                <h3>📋 Descripción General</h3>
+                <div class="content-text">
+                    <p>
+                        Durante la primera semana del proyecto G.A.T.E., el equipo se enfocó en establecer las bases fundamentales 
+                        del proyecto. Se realizó una investigación exhaustiva sobre sistemas de cierre hermético existentes en el 
+                        mercado y se identificaron las principales problemáticas que enfrentan las industrias en cuanto a control 
+                        de emisiones de gases.
+                    </p>
+                    <p>
+                        Se definieron los objetivos principales del proyecto, la metodología a seguir y se estableció un cronograma 
+                        detallado de actividades. Además, se llevó a cabo la primera reunión con el profesor asesor para validar 
+                        el alcance del proyecto y recibir retroalimentación inicial.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Objetivos Alcanzados -->
+            <div class="content-section animate-on-scroll">
+                <h3>🎯 Objetivos Alcanzados</h3>
+                <div class="achievements-grid">
+                    <div class="achievement-item">
+                        <div class="achievement-icon">✅</div>
+                        <div class="achievement-title">Definición del Problema</div>
+                        <p>Se identificó claramente la problemática de emisiones industriales</p>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-icon">✅</div>
+                        <div class="achievement-title">Objetivos del Proyecto</div>
+                        <p>Se establecieron objetivos SMART para el proyecto</p>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-icon">✅</div>
+                        <div class="achievement-title">Metodología</div>
+                        <p>Se definió la metodología de investigación y desarrollo</p>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-icon">✅</div>
+                        <div class="achievement-title">Cronograma</div>
+                        <p>Se elaboró un cronograma detallado de 10 semanas</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actividades Realizadas -->
+            <div class="content-section animate-on-scroll">
+                <h3>⚙️ Actividades Realizadas</h3>
+                <div class="content-text">
+                    <ul>
+                        <li>Reunión de kick-off con el equipo completo</li>
+                        <li>Investigación bibliográfica sobre sistemas de cierre hermético</li>
+                        <li>Análisis de normativas internacionales de seguridad industrial</li>
+                        <li>Estudio de casos de éxito en automatización industrial</li>
+                        <li>Definición de roles y responsabilidades del equipo</li>
+                        <li>Elaboración del documento de alcance del proyecto</li>
+                        <li>Primera asesoría con el profesor tutor</li>
+                        <li>Configuración de herramientas de colaboración (GitHub, Trello, etc.)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Galería de Fotos -->
+            <div class="content-section animate-on-scroll">
+                <h3>📸 Galería de Fotos</h3>
+                <div class="photo-gallery">
+                    <div class="photo-card">
+                        <div class="photo-placeholder">
+                            📷
+                        </div>
+                        <div class="photo-caption">
+                            <h4>Reunión de Planificación</h4>
+                            <p>Primera reunión del equipo para definir objetivos y alcance del proyecto.</p>
+                        </div>
+                    </div>
+
+                    <div class="photo-card">
+                        <div class="photo-placeholder">
+                            📷
+                        </div>
+                        <div class="photo-caption">
+                            <h4>Brainstorming de Ideas</h4>
+                            <p>Sesión de lluvia de ideas para identificar características innovadoras.</p>
+                        </div>
+                    </div>
+
+                    <div class="photo-card">
+                        <div class="photo-placeholder">
+                            📷
+                        </div>
+                        <div class="photo-caption">
+                            <h4>Investigación Bibliográfica</h4>
+                            <p>Equipo realizando investigación sobre tecnologías existentes.</p>
+                        </div>
+                    </div>
+
+                    <div class="photo-card">
+                        <div class="photo-placeholder">
+                            📷
+                        </div>
+                        <div class="photo-caption">
+                            <h4>Elaboración de Cronograma</h4>
+                            <p>Definición detallada del cronograma de actividades por semana.</p>
+                        </div>
+                    </div>
+
+                    <div class="photo-card">
+                        <div class="photo-placeholder">
+                            📷
+                        </div>
+                        <div class="photo-caption">
+                            <h4>Asesoría con Profesor</h4>
+                            <p>Primera reunión de asesoría con el profesor tutor del proyecto.</p>
+                        </div>
+                    </div>
+
+                    <div class="photo-card">
+                        <div class="photo-placeholder">
+                            📷
+                        </div>
+                        <div class="photo-caption">
+                            <h4>Documento de Alcance</h4>
+                            <p>Presentación del documento inicial de alcance y objetivos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conclusiones -->
+            <div class="content-section animate-on-scroll">
+                <h3>💡 Conclusiones de la Semana</h3>
+                <div class="content-text">
+                    <p>
+                        La primera semana resultó ser fundamental para establecer una base sólida del proyecto. El equipo logró 
+                        alinearse en cuanto a expectativas, objetivos y metodología de trabajo. La investigación inicial reveló 
+                        que existe una necesidad real en el sector industrial para sistemas de control de emisiones más eficientes 
+                        y automatizados.
+                    </p>
+                    <p>
+                        Se identificaron varios desafíos potenciales, especialmente en cuanto a la integración de inteligencia 
+                        artificial y la selección de materiales resistentes a ambientes corrosivos. Sin embargo, el equipo se 
+                        siente confiado en su capacidad para abordar estos retos en las siguientes semanas.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Navegación entre semanas -->
+            <div class="week-navigation">
+                <a href="#" class="nav-btn prev disabled">
+                    <span>←</span> Semana Anterior
+                </a>
+                <a href="semana6.html" class="nav-btn next">
+                    Siguiente Semana <span>→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 G.A.T.E. - Instituto Superior Tecnológico Tecsup. Todos los derechos reservados.</p>
+            <p>Proyecto de Investigación e Innovación Tecnológica</p>
+        </div>
+    </footer>
+
+    <!-- Modal para vista completa de imagen -->
+    <div class="modal" id="imageModal">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Funcionalidad para abrir imágenes en modal
+        document.querySelectorAll('.photo-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const modal = document.getElementById('imageModal');
+                modal.classList.add('active');
+                // Aquí irías agregando la imagen real cuando tengas las fotos
+            });
+        });
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+        }
+
+        // Cerrar modal al hacer clic fuera de la imagen
+        document.getElementById('imageModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Cerrar modal con tecla ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

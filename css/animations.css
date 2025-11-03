@@ -1,0 +1,109 @@
+/* Additional Effects */
+.project-card::before,
+.benefit-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(0, 153, 255, 0.1));
+    opacity: 0;
+    transition: var(--transition);
+    border-radius: 15px;
+    z-index: -1;
+}
+
+.project-card:hover::before,
+.benefit-card:hover::before {
+    opacity: 1;
+}
+
+/* Glowing text effect */
+.glow-text {
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5),
+                 0 0 20px rgba(0, 255, 255, 0.3),
+                 0 0 30px rgba(0, 255, 255, 0.2);
+}
+
+/* Loading state */
+.loading {
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+}
+
+/* Gradient border effect */
+.gradient-border {
+    position: relative;
+    border: 2px solid transparent;
+    background: linear-gradient(var(--color-dark-light), var(--color-dark-light)) padding-box,
+                linear-gradient(135deg, var(--color-primary), var(--color-secondary)) border-box;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background: var(--color-dark-light);
+        padding: 2rem;
+        gap: 1rem;
+        transform: translateX(-100%);
+        transition: var(--transition);
+    }
+
+    .nav-menu.active {
+        transform: translateX(0);
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .contact-content {
+        grid-template-columns: 1fr;
+    }
+
+    .tagline {
+        display: none;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .innovation-item {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.5rem;
+    }
+    
+    .logo {
+        font-size: 1.5rem;
+    }
+    
+    .benefits-grid,
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+}

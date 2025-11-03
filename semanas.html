@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avances por Semana - G.A.T.E.</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .weeks-container {
+            padding: 8rem 0 5rem;
+            min-height: 100vh;
+        }
+
+        .weeks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .week-card {
+            background: var(--color-dark-light);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid rgba(0, 255, 255, 0.1);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: block;
+        }
+
+        .week-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .week-card:hover::before {
+            left: 100%;
+        }
+
+        .week-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--color-primary);
+            box-shadow: 0 15px 40px rgba(0, 255, 255, 0.3);
+        }
+
+        .week-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .week-title {
+            color: var(--color-primary);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .week-date {
+            color: var(--color-text-dim);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .week-description {
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        .week-status {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+
+        .status-completed {
+            background: rgba(0, 255, 100, 0.2);
+            color: #00ff64;
+            border: 1px solid #00ff64;
+        }
+
+        .status-progress {
+            background: rgba(255, 200, 0, 0.2);
+            color: #ffc800;
+            border: 1px solid #ffc800;
+        }
+
+        .status-planned {
+            background: rgba(0, 255, 255, 0.2);
+            color: var(--color-primary);
+            border: 1px solid var(--color-primary);
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: var(--transition);
+        }
+
+        .back-button:hover {
+            gap: 1rem;
+            color: var(--color-secondary);
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .page-subtitle {
+            color: var(--color-text-dim);
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+            margin-top: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3.5rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: var(--color-primary);
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegación -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1 class="logo">G.A.T.E.</h1>
+                <p class="tagline">Sistema Hermético Inteligente</p>
+            </div>
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html#inicio" class="nav-link">Inicio</a></li>
+                <li><a href="index.html#proyecto" class="nav-link">Proyecto</a></li>
+                <li><a href="index.html#innovacion" class="nav-link">Innovación</a></li>
+                <li><a href="index.html#beneficios" class="nav-link">Beneficios</a></li>
+                <li><a href="semanas.html" class="nav-link active">Avances</a></li>
+                <li><a href="index.html#equipo" class="nav-link">Equipo</a></li>
+                <li><a href="index.html#contacto" class="nav-link">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <section class="weeks-container">
+        <div class="container">
+            <a href="index.html" class="back-button">
+                <span>←</span> Volver al inicio
+            </a>
+
+            <div class="page-header">
+                <h2 class="section-title">Avances del Proyecto por Semana</h2>
+                <p class="page-subtitle">Seguimiento detallado del desarrollo del sistema G.A.T.E.</p>
+            </div>
+
+            <div class="weeks-grid">
+                <!-- Semana 1 -->
+                <a href="semana1.html" class="week-card animate-on-scroll">
+                    <div class="week-number">01</div>
+                    <h3 class="week-title">Planificación Inicial</h3>
+                    <p class="week-date">Semana 1 - Enero 2025</p>
+                    <p class="week-description">Definición del problema, objetivos del proyecto y metodología de investigación.</p>
+                    <span class="week-status status-completed">Completado</span>
+                </a>
+
+                <!-- Semana 2 -->
+                <a href="semana2.html" class="week-card animate-on-scroll">
+                    <div class="week-number">02</div>
+                    <h3 class="week-title">Investigación de Campo</h3>
+                    <p class="week-date">Semana 2 - Enero 2025</p>
+                    <p class="week-description">Entrevistas a profesionales del sector industrial y recopilación de requisitos.</p>
+                    <span class="week-status status-completed">Completado</span>
+                </a>
+
+                <!-- Semana 3 -->
+                <a href="semana3.html" class="week-card animate-on-scroll">
+                    <div class="week-number">03</div>
+                    <h3 class="week-title">Análisis y Diseño</h3>
+                    <p class="week-date">Semana 3 - Enero 2025</p>
+                    <p class="week-description">Análisis de datos, diagrama Ishikawa y diseño conceptual del sistema.</p>
+                    <span class="week-status status-completed">Completado</span>
+                </a>
+
+                <!-- Semana 4 -->
+                <a href="semana4.html" class="week-card animate-on-scroll">
+                    <div class="week-number">04</div>
+                    <h3 class="week-title">Selección de Componentes</h3>
+                    <p class="week-date">Semana 4 - Febrero 2025</p>
+                    <p class="week-description">Investigación y selección de sensores, actuadores y materiales.</p>
+                    <span class="week-status status-progress">En Progreso</span>
+                </a>
+
+                <!-- Semana 5 -->
+                <a href="semana5.html" class="week-card animate-on-scroll">
+                    <div class="week-number">05</div>
+                    <h3 class="week-title">Desarrollo del Prototipo</h3>
+                    <p class="week-date">Semana 5 - Febrero 2025</p>
+                    <p class="week-description">Construcción del prototipo inicial y programación de controladores.</p>
+                    <span class="week-status status-planned">Planificado</span>
+                </a>
+
+                <!-- Semana 6 -->
+                <a href="semana6.html" class="week-card animate-on-scroll">
+                    <div class="week-number">06</div>
+                    <h3 class="week-title">Integración de IA</h3>
+                    <p class="week-date">Semana 6 - Febrero 2025</p>
+                    <p class="week-description">Implementación de algoritmos de inteligencia artificial para monitoreo predictivo.</p>
+                    <span class="week-status status-planned">Planificado</span>
+                </a>
+
+                <!-- Semana 7 -->
+                <a href="semana7.html" class="week-card animate-on-scroll">
+                    <div class="week-number">07</div>
+                    <h3 class="week-title">Pruebas Iniciales</h3>
+                    <p class="week-date">Semana 7 - Febrero 2025</p>
+                    <p class="week-description">Pruebas de hermeticidad, sensores y sistema de alarmas.</p>
+                    <span class="week-status status-planned">Planificado</span>
+                </a>
+
+                <!-- Semana 8 -->
+                <a href="semana8.html" class="week-card animate-on-scroll">
+                    <div class="week-number">08</div>
+                    <h3 class="week-title">Optimización</h3>
+                    <p class="week-date">Semana 8 - Marzo 2025</p>
+                    <p class="week-description">Ajustes y mejoras basadas en resultados de pruebas.</p>
+                    <span class="week-status status-planned">Planificado</span>
+                </a>
+
+                <!-- Semana 9 -->
+                <a href="semana9.html" class="week-card animate-on-scroll">
+                    <div class="week-number">09</div>
+                    <h3 class="week-title">Documentación</h3>
+                    <p class="week-date">Semana 9 - Marzo 2025</p>
+                    <p class="week-description">Elaboración de manuales técnicos y guías de usuario.</p>
+                    <span class="week-status status-planned">Planificado</span>
+                </a>
+
+                <!-- Semana 10 -->
+                <a href="semana10.html" class="week-card animate-on-scroll">
+                    <div class="week-number">10</div>
+                    <h3 class="week-title">Presentación Final</h3>
+                    <p class="week-date">Semana 10 - Marzo 2025</p>
+                    <p class="week-description">Presentación del proyecto completo y demostración del prototipo funcional.</p>
+                    <span class="week-status status-planned">Planificado</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 G.A.T.E. - Instituto Superior Tecnológico Tecsup. Todos los derechos reservados.</p>
+            <p>Proyecto de Investigación e Innovación Tecnológica</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
