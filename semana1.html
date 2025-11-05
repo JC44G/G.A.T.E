@@ -41,6 +41,38 @@
             font-size: 1.1rem;
         }
 
+        .status-completed {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(0, 255, 128, 0.2);
+            color: #00ff80;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            border: 1px solid rgba(0, 255, 128, 0.3);
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--color-dark-light);
+            border: 2px solid var(--color-primary);
+            border-radius: 10px;
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            margin-bottom: 2rem;
+        }
+
+        .back-button:hover {
+            background: var(--color-primary);
+            color: var(--color-dark);
+            transform: translateX(-5px);
+        }
+
         .content-section {
             margin: 3rem 0;
         }
@@ -59,21 +91,29 @@
             border-radius: 15px;
             line-height: 1.8;
             margin-bottom: 2rem;
+            border: 1px solid rgba(0, 255, 255, 0.1);
         }
 
         .content-text p {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-text);
         }
 
         .content-text ul {
             list-style: none;
-            padding-left: 1rem;
+            padding-left: 0;
         }
 
         .content-text li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
+            padding: 0.8rem 0;
+            padding-left: 2rem;
             position: relative;
+            color: var(--color-text);
+            border-bottom: 1px solid rgba(0, 255, 255, 0.05);
+        }
+
+        .content-text li:last-child {
+            border-bottom: none;
         }
 
         .content-text li::before {
@@ -81,7 +121,53 @@
             position: absolute;
             left: 0;
             color: var(--color-primary);
-            font-size: 1.2rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .content-text strong {
+            color: var(--color-primary);
+        }
+
+        /* Achievements Section */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .achievement-item {
+            background: var(--color-dark-light);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--color-primary);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+        }
+
+        .achievement-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(0, 255, 255, 0.2);
+            border-color: var(--color-primary);
+        }
+
+        .achievement-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .achievement-title {
+            color: var(--color-primary);
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .achievement-item p {
+            color: var(--color-text-dim);
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
 
         /* Gallery Section */
@@ -148,38 +234,7 @@
         .photo-caption p {
             color: var(--color-text-dim);
             font-size: 0.9rem;
-        }
-
-        /* Achievements Section */
-        .achievements-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .achievement-item {
-            background: var(--color-dark-light);
-            padding: 1.5rem;
-            border-radius: 15px;
-            border-left: 4px solid var(--color-primary);
-            transition: var(--transition);
-        }
-
-        .achievement-item:hover {
-            transform: translateX(10px);
-            box-shadow: 0 5px 20px rgba(0, 255, 255, 0.2);
-        }
-
-        .achievement-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .achievement-title {
-            color: var(--color-primary);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
+            line-height: 1.5;
         }
 
         /* Navigation buttons */
@@ -259,6 +314,28 @@
             color: var(--color-secondary);
         }
 
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUp 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .week-header-number {
@@ -275,6 +352,10 @@
 
             .week-navigation {
                 flex-direction: column;
+            }
+
+            .achievements-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -314,9 +395,9 @@
             <!-- Header -->
             <div class="week-header animate-fade-in">
                 <div class="week-header-number">SEMANA 01</div>
-                <h1 class="week-header-title">Planificación Inicial</h1>
-                <p class="week-header-date">Enero 2025</p>
-                <span class="week-status status-completed">Completado</span>
+                <h1 class="week-header-title">Diseño CAD y Fabricación de Componentes</h1>
+                <p class="week-header-date">Semanas 1-2 | Enero 2025</p>
+                <span class="status-completed">✓ Completado</span>
             </div>
 
             <!-- Descripción General -->
@@ -324,15 +405,21 @@
                 <h3>📋 Descripción General</h3>
                 <div class="content-text">
                     <p>
-                        Durante la primera semana del proyecto G.A.T.E., el equipo se enfocó en establecer las bases fundamentales 
-                        del proyecto. Se realizó una investigación exhaustiva sobre sistemas de cierre hermético existentes en el 
-                        mercado y se identificaron las principales problemáticas que enfrentan las industrias en cuanto a control 
-                        de emisiones de gases.
+                        Durante las dos primeras semanas del proyecto G.A.T.E., el equipo se enfocó en el diseño detallado 
+                        de todos los componentes estructurales del sistema utilizando software CAD profesional. Esta fase fue 
+                        fundamental para establecer las especificaciones técnicas precisas y garantizar la viabilidad de 
+                        fabricación del prototipo.
                     </p>
                     <p>
-                        Se definieron los objetivos principales del proyecto, la metodología a seguir y se estableció un cronograma 
-                        detallado de actividades. Además, se llevó a cabo la primera reunión con el profesor asesor para validar 
-                        el alcance del proyecto y recibir retroalimentación inicial.
+                        El proceso incluyó el modelado 3D completo de la carcasa hermética con grado de protección IP65, 
+                        diseñada para resistir ambientes industriales corrosivos. Se utilizó impresión 3D para fabricar 
+                        componentes estructurales complejos y corte láser de alta precisión para elementos críticos que 
+                        requieren tolerancias estrictas.
+                    </p>
+                    <p>
+                        Esta etapa estableció las bases físicas del sistema, considerando aspectos como la resistencia 
+                        mecánica, la hermeticidad del sellado, la accesibilidad para mantenimiento y la integración de 
+                        todos los componentes electrónicos y sensores dentro de un diseño compacto y funcional.
                     </p>
                 </div>
             </div>
@@ -343,23 +430,33 @@
                 <div class="achievements-grid">
                     <div class="achievement-item">
                         <div class="achievement-icon">✅</div>
-                        <div class="achievement-title">Definición del Problema</div>
-                        <p>Se identificó claramente la problemática de emisiones industriales</p>
+                        <div class="achievement-title">Diseño CAD Completo</div>
+                        <p>Modelado 3D detallado de todos los componentes estructurales con especificaciones técnicas precisas</p>
                     </div>
                     <div class="achievement-item">
                         <div class="achievement-icon">✅</div>
-                        <div class="achievement-title">Objetivos del Proyecto</div>
-                        <p>Se establecieron objetivos SMART para el proyecto</p>
+                        <div class="achievement-title">Carcasa IP65</div>
+                        <p>Diseño de carcasa hermética con grado de protección IP65 para ambientes industriales</p>
                     </div>
                     <div class="achievement-item">
                         <div class="achievement-icon">✅</div>
-                        <div class="achievement-title">Metodología</div>
-                        <p>Se definió la metodología de investigación y desarrollo</p>
+                        <div class="achievement-title">Impresión 3D</div>
+                        <p>Fabricación exitosa de componentes estructurales mediante impresión 3D de alta precisión</p>
                     </div>
                     <div class="achievement-item">
                         <div class="achievement-icon">✅</div>
-                        <div class="achievement-title">Cronograma</div>
-                        <p>Se elaboró un cronograma detallado de 10 semanas</p>
+                        <div class="achievement-title">Corte Láser</div>
+                        <p>Producción de elementos de precisión utilizando tecnología de corte láser avanzado</p>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-icon">✅</div>
+                        <div class="achievement-title">Materiales Resistentes</div>
+                        <p>Selección de materiales resistentes a corrosión química para ambientes industriales extremos</p>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-icon">✅</div>
+                        <div class="achievement-title">Validación de Diseño</div>
+                        <p>Verificación de tolerancias, ajustes y compatibilidad entre componentes físicos</p>
                     </div>
                 </div>
             </div>
@@ -369,14 +466,42 @@
                 <h3>⚙️ Actividades Realizadas</h3>
                 <div class="content-text">
                     <ul>
-                        <li>Reunión de kick-off con el equipo completo</li>
-                        <li>Investigación bibliográfica sobre sistemas de cierre hermético</li>
-                        <li>Análisis de normativas internacionales de seguridad industrial</li>
-                        <li>Estudio de casos de éxito en automatización industrial</li>
-                        <li>Definición de roles y responsabilidades del equipo</li>
-                        <li>Elaboración del documento de alcance del proyecto</li>
-                        <li>Primera asesoría con el profesor tutor</li>
-                        <li>Configuración de herramientas de colaboración (GitHub, Trello, etc.)</li>
+                        <li><strong>Modelado 3D en software CAD:</strong> Diseño detallado de carcasa, soportes de sensores, compartimentos electrónicos y estructura de sellado hermético</li>
+                        <li><strong>Simulaciones de resistencia mecánica:</strong> Análisis de esfuerzos y deformaciones bajo condiciones operativas reales</li>
+                        <li><strong>Diseño de sistema de sellado:</strong> Desarrollo de junta hermética con pruebas de presión diferencial</li>
+                        <li><strong>Selección de materiales:</strong> Evaluación de polímeros resistentes a químicos, metales anticorrosivos y elastómeros para sellado</li>
+                        <li><strong>Impresión 3D de prototipos:</strong> Fabricación de componentes estructurales con tecnología FDM y resina</li>
+                        <li><strong>Corte láser de precisión:</strong> Producción de placas de montaje, soportes metálicos y elementos de fijación</li>
+                        <li><strong>Pruebas de ensamblaje preliminar:</strong> Verificación de ajustes y compatibilidad dimensional</li>
+                        <li><strong>Documentación técnica:</strong> Elaboración de planos de fabricación, lista de materiales y especificaciones</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Especificaciones Técnicas -->
+            <div class="content-section animate-on-scroll">
+                <h3>🔧 Especificaciones Técnicas de Componentes</h3>
+                <div class="content-text">
+                    <p><strong>Carcasa Principal:</strong></p>
+                    <ul>
+                        <li>Material: ABS de alta resistencia con tratamiento UV</li>
+                        <li>Dimensiones: 350mm x 250mm x 180mm</li>
+                        <li>Grado de protección: IP65 (protección completa contra polvo y chorros de agua)</li>
+                        <li>Espesor de pared: 4mm en zonas críticas</li>
+                    </ul>
+                    
+                    <p><strong>Sistema de Sellado:</strong></p>
+                    <ul>
+                        <li>Junta: EPDM resistente a químicos y temperaturas extremas (-40°C a +120°C)</li>
+                        <li>Mecanismo de cierre: Sistema de compresión con 8 puntos de fijación</li>
+                        <li>Hermeticidad garantizada: >95% según especificaciones del proyecto</li>
+                    </ul>
+                    
+                    <p><strong>Soportes y Montajes:</strong></p>
+                    <ul>
+                        <li>Placas metálicas: Aluminio anodizado 6061-T6</li>
+                        <li>Soportes de sensores: Impresión 3D en PETG con refuerzo de fibra</li>
+                        <li>Sistema de rieles DIN para montaje de componentes electrónicos</li>
                     </ul>
                 </div>
             </div>
@@ -387,88 +512,131 @@
                 <div class="photo-gallery">
                     <div class="photo-card">
                         <div class="photo-placeholder">
-                            📷
+                            🖥️
                         </div>
                         <div class="photo-caption">
-                            <h4>Reunión de Planificación</h4>
-                            <p>Primera reunión del equipo para definir objetivos y alcance del proyecto.</p>
+                            <h4>Diseño CAD - Carcasa</h4>
+                            <p>Modelado 3D completo de la carcasa hermética con todos sus componentes internos.</p>
                         </div>
                     </div>
 
                     <div class="photo-card">
                         <div class="photo-placeholder">
-                            📷
+                            🖨️
                         </div>
                         <div class="photo-caption">
-                            <h4>Brainstorming de Ideas</h4>
-                            <p>Sesión de lluvia de ideas para identificar características innovadoras.</p>
+                            <h4>Impresión 3D en Proceso</h4>
+                            <p>Fabricación de componentes estructurales mediante impresora 3D de alta precisión.</p>
                         </div>
                     </div>
 
                     <div class="photo-card">
                         <div class="photo-placeholder">
-                            📷
+                            ⚡
                         </div>
                         <div class="photo-caption">
-                            <h4>Investigación Bibliográfica</h4>
-                            <p>Equipo realizando investigación sobre tecnologías existentes.</p>
+                            <h4>Corte Láser de Precisión</h4>
+                            <p>Producción de placas metálicas y elementos de montaje con corte láser CNC.</p>
                         </div>
                     </div>
 
                     <div class="photo-card">
                         <div class="photo-placeholder">
-                            📷
+                            🔩
                         </div>
                         <div class="photo-caption">
-                            <h4>Elaboración de Cronograma</h4>
-                            <p>Definición detallada del cronograma de actividades por semana.</p>
+                            <h4>Componentes Fabricados</h4>
+                            <p>Conjunto de piezas terminadas listas para ensamblaje y pruebas.</p>
                         </div>
                     </div>
 
                     <div class="photo-card">
                         <div class="photo-placeholder">
-                            📷
+                            🛠️
                         </div>
                         <div class="photo-caption">
-                            <h4>Asesoría con Profesor</h4>
-                            <p>Primera reunión de asesoría con el profesor tutor del proyecto.</p>
+                            <h4>Sistema de Sellado</h4>
+                            <p>Detalle del mecanismo de cierre hermético con junta EPDM.</p>
                         </div>
                     </div>
 
                     <div class="photo-card">
                         <div class="photo-placeholder">
-                            📷
+                            📐
                         </div>
                         <div class="photo-caption">
-                            <h4>Documento de Alcance</h4>
-                            <p>Presentación del documento inicial de alcance y objetivos.</p>
+                            <h4>Verificación Dimensional</h4>
+                            <p>Control de calidad y verificación de tolerancias en componentes fabricados.</p>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- Desafíos y Soluciones -->
+            <div class="content-section animate-on-scroll">
+                <h3>⚡ Desafíos y Soluciones</h3>
+                <div class="content-text">
+                    <p><strong>Desafío 1: Garantizar hermeticidad >95%</strong></p>
+                    <p>
+                        <em>Solución:</em> Se diseñó un sistema de sellado múltiple con junta EPDM de doble labio 
+                        y sistema de compresión uniforme en 8 puntos, validado mediante simulaciones de presión diferencial.
+                    </p>
+                    
+                    <p><strong>Desafío 2: Resistencia a ambientes corrosivos</strong></p>
+                    <p>
+                        <em>Solución:</em> Selección cuidadosa de materiales: ABS con tratamiento UV para carcasa, 
+                        aluminio anodizado para componentes metálicos y EPDM para juntas, todos resistentes a químicos industriales.
+                    </p>
+                    
+                    <p><strong>Desafío 3: Accesibilidad para mantenimiento</strong></p>
+                    <p>
+                        <em>Solución:</em> Diseño modular con panel frontal removible y sistema de rieles DIN que 
+                        permite acceso rápido a componentes electrónicos sin comprometer la hermeticidad.
+                    </p>
                 </div>
             </div>
 
             <!-- Conclusiones -->
             <div class="content-section animate-on-scroll">
-                <h3>💡 Conclusiones de la Semana</h3>
+                <h3>💡 Conclusiones de las Semanas 1-2</h3>
                 <div class="content-text">
                     <p>
-                        La primera semana resultó ser fundamental para establecer una base sólida del proyecto. El equipo logró 
-                        alinearse en cuanto a expectativas, objetivos y metodología de trabajo. La investigación inicial reveló 
-                        que existe una necesidad real en el sector industrial para sistemas de control de emisiones más eficientes 
-                        y automatizados.
+                        Las dos primeras semanas del proyecto resultaron fundamentales para establecer una base sólida 
+                        en el desarrollo físico del sistema G.A.T.E. El diseño CAD detallado permitió identificar y resolver 
+                        potenciales problemas de fabricación antes de la producción, ahorrando tiempo y recursos significativos.
                     </p>
                     <p>
-                        Se identificaron varios desafíos potenciales, especialmente en cuanto a la integración de inteligencia 
-                        artificial y la selección de materiales resistentes a ambientes corrosivos. Sin embargo, el equipo se 
-                        siente confiado en su capacidad para abordar estos retos en las siguientes semanas.
+                        La combinación de impresión 3D para componentes complejos y corte láser para elementos de precisión 
+                        demostró ser una estrategia eficiente y económica, permitiendo iteraciones rápidas del diseño. 
+                        El sistema de sellado hermético desarrollado superó las expectativas iniciales en pruebas preliminares.
                     </p>
+                    <p>
+                        Los componentes fabricados cumplen con todas las especificaciones técnicas establecidas, incluyendo 
+                        el grado de protección IP65 y la resistencia a ambientes corrosivos. El equipo se encuentra preparado 
+                        para avanzar a la siguiente fase de integración electrónica con confianza en la calidad de la estructura física.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Próximos Pasos -->
+            <div class="content-section animate-on-scroll">
+                <h3>🚀 Próximos Pasos</h3>
+                <div class="content-text">
+                    <ul>
+                        <li>Iniciar la integración electrónica de sensores y actuadores en la carcasa fabricada</li>
+                        <li>Realizar el cableado completo del sistema siguiendo diagramas de conexión</li>
+                        <li>Configurar el PLC LOGO 8 como controlador central</li>
+                        <li>Instalar y calibrar sensores MQ-2, MQ-135, PIR y HC-SR04</li>
+                        <li>Implementar sistema de alimentación con respaldo de batería</li>
+                        <li>Realizar pruebas de hermeticidad en condiciones controladas</li>
+                    </ul>
                 </div>
             </div>
 
             <!-- Navegación entre semanas -->
             <div class="week-navigation">
-                <a href="#" class="nav-btn prev disabled">
-                    <span>←</span> Semana Anterior
+                <a href="semanas.html" class="nav-btn prev">
+                    <span>←</span> Volver a Semanas
                 </a>
                 <a href="semana2.html" class="nav-btn next">
                     Siguiente Semana <span>→</span>
@@ -481,7 +649,8 @@
     <footer class="footer">
         <div class="container">
             <p>&copy; 2025 G.A.T.E. - Instituto Superior Tecnológico Tecsup. Todos los derechos reservados.</p>
-            <p>Proyecto de Investigación e Innovación Tecnológica</p>
+            <p>Proyecto de Investigación e Innovación Tecnológica - Grupo C, Ciclo 4 C5</p>
+            <p>Docente: Ing. Ares Leonardo Silva Varillas</p>
         </div>
     </footer>
 
@@ -519,6 +688,25 @@
             if (e.key === 'Escape') {
                 closeModal();
             }
+        });
+
+        // Animaciones al hacer scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0.2s';
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
         });
     </script>
 </body>
